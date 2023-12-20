@@ -1,6 +1,7 @@
 import random
 import re
 from typing import List
+import requests
 
 def handle_response(message: str) -> str:
     p_message = message.lower()
@@ -28,6 +29,9 @@ def handle_response(message: str) -> str:
         "Hello, Akitti! I hope you're having a paw-some day!",
         "Aww, Akitti! You bring joy to every conversation!",
         "Sending you lots of love and cuddles, Akitti!",
+        "Hello, Akitti! Your adorable presence makes every moment brighter.",
+        "Akitti, you bring a paw-sitive vibe wherever you go. Keep being pawsome!",
+        "Akitti, you're the definition of adorable. Keep spreading joy!",
         "Akitti, you're as adorable as a fluffy cloud on a sunny day!"
     ]
     fact = [
@@ -105,6 +109,11 @@ def handle_response(message: str) -> str:
     if re.search(r'\bakitti\b', p_message, re.IGNORECASE):
         return random.choice(cute_responses)
 
+    if re.search(r'\bcaius cat\b', p_message, re.IGNORECASE):  # Check if the user mentioned 'caius cat'
+        # Call the function to get a random cat image URL
+        cat_image_url = get_random_cat_image('live_mgiNICPZqrZFcDNDNIFqMgKtlPChA5i5HyIdvJrac3k04QAASsJyxvDkzJDm5Q1G')
+        return cat_image_url or "Failed to fetch a cat image."
+
     if p_message == 'saul':
         return "It's Saulin time."
 
@@ -125,8 +134,36 @@ def handle_response(message: str) -> str:
 
     return 'Regrettably, I am unable to grasp the meaning of your statement. Try typing "!help".'
 
+
+def get_random_cat_image(api_key):
+    base_url = "https://api.thecatapi.com/v1/images/search"
+    headers = {
+        "x-api-key": api_key,
+    }
+
+    try:
+        response = requests.get(base_url, headers=headers)
+        response.raise_for_status()
+        cat_data = response.json()
+
+        if cat_data:
+            # Extract the URL of the cat image from the response
+            cat_image_url = cat_data[0]["url"]
+            return cat_image_url
+
+        return None
+    except requests.exceptions.RequestException as e:
+        print(f"Error fetching cat image: {e}")
+        return None
+
+
+# Example usage
+user_message = input("Enter a message: ")
+response = handle_response(user_message)
+print(response)
 # Example usage
 user_message = input
+
 
 
 
