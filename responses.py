@@ -121,7 +121,13 @@ def handle_response(message: str) -> str:
         return str(random.randint(1, 6))
 
     if p_message == '!help':
-        return "`This is a help message that you can modify`"
+        return (
+            "Welcome! Here are some commands you can use:\n"
+            "- Type `!fact` to discover amazing facts.\n"
+            "- Type `!quote` for a dose of interesting quotes.\n"
+            "- Type `!joke` if you're in the mood for funny jokes.\n"
+            "- To brighten your day with cuteness, type `caius cat` for pictures and gifs of adorable cats!"
+        )
 
     if p_message == '!quote':
         return random.choice(quotes)
@@ -163,7 +169,6 @@ response = handle_response(user_message)
 print(response)
 # Example usage
 user_message = input
-
 
 
 
