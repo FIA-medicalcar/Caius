@@ -18,7 +18,8 @@ def get_random_cat_image(api_key):
     except requests.exceptions.RequestException as e:
         print(f"Error fetching cat image: {e}")
         return None
-
+    
+    
 def get_random_chuck_norris_joke():
     chuck_norris_joke_api_url = 'https://api.chucknorris.io/jokes/random'
     try:
@@ -58,3 +59,45 @@ def get_random_fox_image():
     except requests.exceptions.RequestException as e:
         print(f"Error fetching fox image: {e}")
         return "Failed to fetch a fox image."
+
+
+def get_nasa_apod(api_key):
+    base_url = "https://api.nasa.gov/planetary/apod"
+    params = {
+        "api_key": api_key,
+    }
+
+    try:
+        response = requests.get(base_url, params=params)
+        response.raise_for_status()
+        apod_data = response.json()
+        title = apod_data.get("title", "Astronomy Picture of the Day")
+        image_url = apod_data.get("url", "")
+        explanation = apod_data.get("explanation", "No description available.")
+
+        return {
+            "title": title,
+            "image_url": image_url,
+            "explanation": explanation,
+        }
+
+    except requests.exceptions.RequestException as e:
+        print(f"Error fetching NASA APOD: {e}")
+        return None
+    
+def get_cat_fact():
+    base_url = "https://catfact.ninja/fact"
+
+    try:
+        response = requests.get(base_url)
+        response.raise_for_status()
+        cat_fact_data = response.json()
+
+        if cat_fact_data.get("fact"):
+            return cat_fact_data["fact"]
+        else:
+            return "Unable to fetch cat fact."
+
+    except requests.exceptions.RequestException as e:
+        print(f"Error fetching cat fact: {e}")
+        return "Unable to fetch cat fact."
