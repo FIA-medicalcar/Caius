@@ -23,6 +23,12 @@ def handle_response(message: str) -> str:
         "Why not explore the world of books? Reading can transport you to fascinating places and ignite your imagination.",
         "Have you ever considered learning a new language? It can be a fun and rewarding way to spend your time.",
         "How about going for a walk in nature? Fresh air and a change of scenery can do wonders for your mood.",
+        "Discover the magic of music creation. Pick up an instrument, experiment with melodies, and compose a song that reflects your mood.",
+        "Capture moments through photography and play with perspectives.",
+        "Experiment with cooking or baking for culinary delight.",
+        "Write a short story or explore poetry to unleash your creativity.",
+        "Engage in mindful meditation for relaxation and mental clarity.",
+        "Practice a new language with language-learning apps.",
         "You could try solving puzzles or brain teasers to challenge your mind and keep boredom at bay."
     ]
 
@@ -105,7 +111,7 @@ def handle_response(message: str) -> str:
     if any(keyword.lower() in p_message for keyword in ['hello', 'hi', 'hey', 'heya']) and ('caius' in p_message):
         return random.choice(greetings)
 
-    if any(phrase in p_message for phrase in ["caius i'm bored", "caius im bored", "caius i'm bored", "caius i am bored"]):
+    if p_message == '!bored':
         return random.choice(bored_responses)
 
     if re.search(r'\bakitti\b', p_message, re.IGNORECASE):
@@ -142,6 +148,7 @@ def handle_response(message: str) -> str:
             "- Curious about foxes? Type `!fox` to conjure a virtual fox and witness its playful antics.\n"
             "- Yearning for feline charm? Type `!caius cat` for adorable cat pictures. Don't forget to spice it up "
             "with a cat fact by typing `!catfact`.\n"
+            "- Feeling bored? Type `!bored` for quick ideas to banish boredom.\n"
             "- Reach for the stars! Type `!nasa` and behold the Astronomy Picture of the Day from NASA."
         )
 
