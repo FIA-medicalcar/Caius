@@ -2,7 +2,7 @@ import random
 import re
 from typing import List
 import requests
-from apis import get_random_cat_image, get_random_chuck_norris_joke, get_random_advice
+from apis import get_random_cat_image, get_random_chuck_norris_joke, get_random_advice, get_random_fox_image
 
 
 def handle_response(message: str) -> str:
@@ -114,11 +114,15 @@ def handle_response(message: str) -> str:
     if p_message == '!norris':
         return get_random_chuck_norris_joke()
 
+    if p_message == '!fox':
+        fox_image_url = get_random_fox_image()
+        return fox_image_url or "Failed to fetch a fox image."
+
     if p_message == '!advice':
         return get_random_advice()
 
-    if re.search(r'\bcaius cat\b', p_message, re.IGNORECASE): 
-       cat_image_url = get_random_cat_image('live_mgiNICPZqrZFcDNDNIFqMgKtlPChA5i5HyIdvJrac3k04QAASsJyxvDkzJDm5Q1G')
+    if re.search(r'\bcaius cat\b', p_message, re.IGNORECASE):
+        cat_image_url = get_random_cat_image('live_mgiNICPZqrZFcDNDNIFqMgKtlPChA5i5HyIdvJrac3k04QAASsJyxvDkzJDm5Q1G')
         return cat_image_url or "Failed to fetch a cat image."
 
     if p_message == 'saul':
@@ -135,7 +139,8 @@ def handle_response(message: str) -> str:
             "- Type `!joke` if you're in the mood for funny jokes.\n"
             "- To brighten your day with cuteness, type `caius cat` for pictures and gifs of adorable cats.\n"
             "- Need some advice? Type `!advice` to get a piece of valuable advice.\n"
-            "- Want a Chuck Norris joke? Type `!norris` for a dose of Chuck Norris humor!"
+            "- Want a Chuck Norris joke? Type `!norris` for a dose of Chuck Norris humor.\n"
+            "- Curious about foxes? Type `!fox` to summon a virtual fox and see what mischief it's up to!"
         )
 
     if p_message == '!quote':
@@ -150,13 +155,7 @@ def handle_response(message: str) -> str:
     return 'Regrettably, I am unable to grasp the meaning of your statement. Try typing "!help".'
 
 
-
 user_message = input("Enter a message: ")
 response = handle_response(user_message)
 print(response)
 user_message = input
-
-
-
-
-
