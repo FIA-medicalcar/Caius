@@ -1,5 +1,3 @@
-# apis.py
-
 import random
 import requests
 
@@ -45,3 +43,18 @@ def get_random_advice():
     except requests.exceptions.RequestException as e:
         print(f"Error fetching advice: {e}")
         return "Failed to fetch advice."
+
+
+def get_random_fox_image():
+    try:
+        response = requests.get("https://randomfox.ca/floof/")
+        response.raise_for_status()
+        fox_data = response.json()
+
+        fox_image_url = fox_data["image"]
+
+        return fox_image_url
+
+    except requests.exceptions.RequestException as e:
+        print(f"Error fetching fox image: {e}")
+        return "Failed to fetch a fox image."
