@@ -2,6 +2,8 @@ import random
 import re
 from typing import List
 import requests
+from apis import get_random_cat_image, get_random_chuck_norris_joke, get_random_advice
+
 
 def handle_response(message: str) -> str:
     p_message = message.lower()
@@ -109,6 +111,12 @@ def handle_response(message: str) -> str:
     if re.search(r'\bakitti\b', p_message, re.IGNORECASE):
         return random.choice(cute_responses)
 
+    if p_message == '!norris':
+        return get_random_chuck_norris_joke()
+
+    if p_message == '!advice':
+        return get_random_advice()
+
     if re.search(r'\bcaius cat\b', p_message, re.IGNORECASE):  # Check if the user mentioned 'caius cat'
         # Call the function to get a random cat image URL
         cat_image_url = get_random_cat_image('live_mgiNICPZqrZFcDNDNIFqMgKtlPChA5i5HyIdvJrac3k04QAASsJyxvDkzJDm5Q1G')
@@ -126,7 +134,9 @@ def handle_response(message: str) -> str:
             "- Type `!fact` to discover amazing facts.\n"
             "- Type `!quote` for a dose of interesting quotes.\n"
             "- Type `!joke` if you're in the mood for funny jokes.\n"
-            "- To brighten your day with cuteness, type `caius cat` for pictures and gifs of adorable cats!"
+            "- To brighten your day with cuteness, type `caius cat` for pictures and gifs of adorable cats.\n"
+            "- Need some advice? Type `!advice` to get a piece of valuable advice.\n"
+            "- Want a Chuck Norris joke? Type `!norris` for a dose of Chuck Norris humor!"
         )
 
     if p_message == '!quote':
@@ -141,34 +151,13 @@ def handle_response(message: str) -> str:
     return 'Regrettably, I am unable to grasp the meaning of your statement. Try typing "!help".'
 
 
-def get_random_cat_image(api_key):
-    base_url = "https://api.thecatapi.com/v1/images/search"
-    headers = {
-        "x-api-key": api_key,
-    }
-
-    try:
-        response = requests.get(base_url, headers=headers)
-        response.raise_for_status()
-        cat_data = response.json()
-
-        if cat_data:
-            # Extract the URL of the cat image from the response
-            cat_image_url = cat_data[0]["url"]
-            return cat_image_url
-
-        return None
-    except requests.exceptions.RequestException as e:
-        print(f"Error fetching cat image: {e}")
-        return None
-
-
 # Example usage
 user_message = input("Enter a message: ")
 response = handle_response(user_message)
 print(response)
 # Example usage
 user_message = input
+
 
 
 
