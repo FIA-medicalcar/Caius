@@ -125,7 +125,7 @@ def handle_response(message: str) -> str:
         cat_image_url = get_random_cat_image('live_mgiNICPZqrZFcDNDNIFqMgKtlPChA5i5HyIdvJrac3k04QAASsJyxvDkzJDm5Q1G')
         return cat_image_url or "Failed to fetch a cat image."
 
-    if p_message == 'saul':
+    if p_message == "!saul":
         return "It's Saulin time."
 
     if 'roll' in p_message:
@@ -140,7 +140,7 @@ def handle_response(message: str) -> str:
             "- Seek wisdom with `!advice` and receive valuable insights to navigate life's challenges.\n"
             "- Brace yourself for Chuck Norris' legendary humor! Type `!norris` for a Chuck Norris joke.\n"
             "- Curious about foxes? Type `!fox` to conjure a virtual fox and witness its playful antics.\n"
-            "- Yearning for feline charm? Type `caius cat` for adorable cat pictures. Don't forget to spice it up "
+            "- Yearning for feline charm? Type `!caius cat` for adorable cat pictures. Don't forget to spice it up "
             "with a cat fact by typing `!catfact`!\n"
             "- Reach for the stars! Type `!nasa` and behold the Astronomy Picture of the Day from NASA."
         )
@@ -172,3 +172,4 @@ user_message = input("Enter a message: ")
 response = handle_response(user_message)
 print(response)
 user_message = input
+
