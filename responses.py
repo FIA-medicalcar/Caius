@@ -134,7 +134,7 @@ def handle_response(message: str) -> str:
     if p_message == '!help':
         return (
             "Welcome to Discord Wonderland! Embark on a journey of discovery with these commands:\n"
-            "- Type `!fact` and unlock mind-boggling facts that will transport you to new realms.\n"
+            "- Type `!fact` and unlock mind-blowing facts that will transport you to new realms.\n"
             "- Summon inspiration by typing `!quote` for a collection of profound and thought-provoking quotes.\n"
             "- Lift your spirits with a burst of laughter! Type `!joke` for a dose of hilarity.\n"
             "- Seek wisdom with `!advice` and receive valuable insights to navigate life's challenges.\n"
