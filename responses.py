@@ -2,7 +2,7 @@ import random
 import re
 from typing import List
 import requests
-from apis import get_random_cat_image, get_random_chuck_norris_joke, get_random_advice, get_random_fox_image
+from apis import get_random_cat_image, get_random_chuck_norris_joke, get_random_advice, get_random_fox_image, get_nasa_apod, get_cat_fact
 
 
 def handle_response(message: str) -> str:
@@ -133,15 +133,28 @@ def handle_response(message: str) -> str:
 
     if p_message == '!help':
         return (
-            "Welcome! Here are some commands you can use:\n"
-            "- Type `!fact` to discover amazing facts.\n"
-            "- Type `!quote` for a dose of interesting quotes.\n"
-            "- Type `!joke` if you're in the mood for funny jokes.\n"
-            "- To brighten your day with cuteness, type `caius cat` for pictures and gifs of adorable cats.\n"
-            "- Need some advice? Type `!advice` to get a piece of valuable advice.\n"
-            "- Want a Chuck Norris joke? Type `!norris` for a dose of Chuck Norris humor.\n"
-            "- Curious about foxes? Type `!fox` to summon a virtual fox and see what mischief it's up to!"
+            "Welcome to Discord Wonderland! Embark on a journey of discovery with these commands:\n"
+            "- Type `!fact` and unlock mind-boggling facts that will transport you to new realms.\n"
+            "- Summon inspiration by typing `!quote` for a collection of profound and thought-provoking quotes.\n"
+            "- Lift your spirits with a burst of laughter! Type `!joke` for a dose of hilarity.\n"
+            "- Seek wisdom with `!advice` and receive valuable insights to navigate life's challenges.\n"
+            "- Brace yourself for Chuck Norris' legendary humor! Type `!norris` for a Chuck Norris joke.\n"
+            "- Curious about foxes? Type `!fox` to conjure a virtual fox and witness its playful antics.\n"
+            "- Yearning for feline charm? Type `caius cat` for adorable cat pictures. Don't forget to spice it up "
+            "with a cat fact by typing `!catfact`!\n"
+            "- Reach for the stars! Type `!nasa` and behold the Astronomy Picture of the Day from NASA."
         )
+
+    if p_message == '!nasa':
+        nasa_apod_info = get_nasa_apod('eIZK2lZteT959mjn9ZcbzsV76BoLU0xUsfozZhcY')
+        if nasa_apod_info:
+            return f"{nasa_apod_info['title']} \n\n{nasa_apod_info['explanation']}\n\n {nasa_apod_info['image_url']}"
+        else:
+            return "Failed to fetch NASA APOD."
+
+    if p_message == '!catfact':
+        cat_fact = get_cat_fact()
+        return f"Cat Fact: {cat_fact}"
 
     if p_message == '!quote':
         return random.choice(quotes)
