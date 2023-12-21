@@ -117,9 +117,8 @@ def handle_response(message: str) -> str:
     if p_message == '!advice':
         return get_random_advice()
 
-    if re.search(r'\bcaius cat\b', p_message, re.IGNORECASE):  # Check if the user mentioned 'caius cat'
-        # Call the function to get a random cat image URL
-        cat_image_url = get_random_cat_image('live_mgiNICPZqrZFcDNDNIFqMgKtlPChA5i5HyIdvJrac3k04QAASsJyxvDkzJDm5Q1G')
+    if re.search(r'\bcaius cat\b', p_message, re.IGNORECASE): 
+       cat_image_url = get_random_cat_image('live_mgiNICPZqrZFcDNDNIFqMgKtlPChA5i5HyIdvJrac3k04QAASsJyxvDkzJDm5Q1G')
         return cat_image_url or "Failed to fetch a cat image."
 
     if p_message == 'saul':
@@ -151,11 +150,10 @@ def handle_response(message: str) -> str:
     return 'Regrettably, I am unable to grasp the meaning of your statement. Try typing "!help".'
 
 
-# Example usage
+
 user_message = input("Enter a message: ")
 response = handle_response(user_message)
 print(response)
-# Example usage
 user_message = input
 
 
