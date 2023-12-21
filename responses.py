@@ -141,7 +141,7 @@ def handle_response(message: str) -> str:
             "- Brace yourself for Chuck Norris' legendary humor! Type `!norris` for a Chuck Norris joke.\n"
             "- Curious about foxes? Type `!fox` to conjure a virtual fox and witness its playful antics.\n"
             "- Yearning for feline charm? Type `!caius cat` for adorable cat pictures. Don't forget to spice it up "
-            "with a cat fact by typing `!catfact`!\n"
+            "with a cat fact by typing `!catfact`.\n"
             "- Reach for the stars! Type `!nasa` and behold the Astronomy Picture of the Day from NASA."
         )
 
