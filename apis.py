@@ -18,8 +18,8 @@ def get_random_cat_image(api_key):
     except requests.exceptions.RequestException as e:
         print(f"Error fetching cat image: {e}")
         return None
-    
-    
+
+
 def get_random_chuck_norris_joke():
     chuck_norris_joke_api_url = 'https://api.chucknorris.io/jokes/random'
     try:
@@ -84,7 +84,7 @@ def get_nasa_apod(api_key):
     except requests.exceptions.RequestException as e:
         print(f"Error fetching NASA APOD: {e}")
         return None
-    
+
 def get_cat_fact():
     base_url = "https://catfact.ninja/fact"
 
@@ -101,3 +101,23 @@ def get_cat_fact():
     except requests.exceptions.RequestException as e:
         print(f"Error fetching cat fact: {e}")
         return "Unable to fetch cat fact."
+
+def get_dad_joke():
+    dad_joke_api_url = "https://icanhazdadjoke.com/"
+    headers = {"Accept": "application/json"}
+
+    try:
+        response = requests.get(dad_joke_api_url, headers=headers)
+        response.raise_for_status()
+        dad_joke_data = response.json()
+
+        if dad_joke_data.get("joke"):
+            return dad_joke_data["joke"]
+        else:
+            return "Unable to fetch dad joke."
+
+    except requests.exceptions.RequestException as e:
+        print(f"Error fetching dad joke: {e}")
+        return "Unable to fetch dad joke."
+
+
