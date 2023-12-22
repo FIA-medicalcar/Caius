@@ -2,7 +2,7 @@ import random
 import re
 from typing import List
 import requests
-from apis import get_random_cat_image, get_random_chuck_norris_joke, get_random_advice, get_random_fox_image, get_nasa_apod, get_cat_fact
+from apis import get_random_cat_image, get_random_chuck_norris_joke, get_random_advice, get_random_fox_image, get_nasa_apod, get_cat_fact, get_dad_joke
 
 
 def handle_response(message: str) -> str:
@@ -120,6 +120,9 @@ def handle_response(message: str) -> str:
     if p_message == '!norris':
         return get_random_chuck_norris_joke()
 
+    if p_message == '!dadjoke':
+        return get_dad_joke()
+
     if p_message == '!fox':
         fox_image_url = get_random_fox_image()
         return fox_image_url or "Failed to fetch a fox image."
@@ -142,7 +145,7 @@ def handle_response(message: str) -> str:
             "Welcome to Discord Wonderland! Embark on a journey of discovery with these commands:\n"
             "- Type `!fact` and unlock mind-blowing facts that will transport you to new realms.\n"
             "- Summon inspiration by typing `!quote` for a collection of profound and thought-provoking quotes.\n"
-            "- Lift your spirits with a burst of laughter! Type `!joke` for a dose of hilarity.\n"
+            "- Elevate your mood! Type `!joke` for a burst of laughter and `!dadjoke` for some wholesome dad humor.\n"
             "- Seek wisdom with `!advice` and receive valuable insights to navigate life's challenges.\n"
             "- Brace yourself for Chuck Norris' legendary humor! Type `!norris` for a Chuck Norris joke.\n"
             "- Curious about foxes? Type `!fox` to conjure a virtual fox and witness its playful antics.\n"
@@ -179,4 +182,3 @@ user_message = input("Enter a message: ")
 response = handle_response(user_message)
 print(response)
 user_message = input
-
