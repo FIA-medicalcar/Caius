@@ -132,7 +132,7 @@ def handle_response(message: str) -> str:
     if p_message == 'c!advice':
         return get_random_advice()
 
-    if re.search(r'\bcaius cat\b', p_message, re.IGNORECASE):
+    if re.search(r'\bcaius cat\b', p_message, re.IGNORECASE) or re.search(r'\bc!caius cat\b', p_message, re.IGNORECASE):
         cat_image_url = get_random_cat_image(os.getenv('CAT_API_KEY'))
         return cat_image_url or "Failed to fetch a cat image."
 
@@ -151,7 +151,7 @@ def handle_response(message: str) -> str:
             "- Seek wisdom with `c!advice` and receive valuable insights to navigate life's challenges.\n"
             "- Brace yourself for Chuck Norris' legendary humor! Type `c!norris` for a Chuck Norris joke.\n"
             "- Curious about foxes? Type `c!fox` to conjure a virtual fox and witness its playful antics.\n"
-            "- Yearning for feline charm? Type `!caius cat` for adorable cat pictures. Don't forget to spice it up "
+            "- Yearning for feline charm? Type `c!caius cat` for adorable cat pictures. Don't forget to spice it up "
             "with a cat fact by typing `c!catfact`.\n"
             "- Feeling bored? Type `c!bored` for quick ideas to banish boredom.\n"
             "- Reach for the stars! Type `c!nasa` and behold the Astronomy Picture of the Day from NASA."
