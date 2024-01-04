@@ -116,7 +116,7 @@ def handle_response(message: str) -> str:
     if p_message == 'c!bored':
         return random.choice(bored_responses)
 
-    if re.search(r'\bakitti\b', p_message, re.IGNORECASE) and ('caius' in p_message):
+    if re.search(r'caius.*akitti', p_message, re.IGNORECASE):
         return random.choice(cute_responses)
 
     if p_message == 'c!norris':
