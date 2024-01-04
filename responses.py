@@ -3,7 +3,9 @@ import re
 from typing import List
 import requests
 from apis import get_random_cat_image, get_random_chuck_norris_joke, get_random_advice, get_random_fox_image, get_nasa_apod, get_cat_fact, get_dad_joke
-
+from dotenv import load_dotenv
+import os
+load_dotenv()
 
 def handle_response(message: str) -> str:
     p_message = message.lower()
@@ -111,30 +113,30 @@ def handle_response(message: str) -> str:
     if any(keyword.lower() in p_message for keyword in ['hello', 'hi', 'hey', 'heya']) and ('caius' in p_message):
         return random.choice(greetings)
 
-    if p_message == '!bored':
+    if p_message == 'c!bored':
         return random.choice(bored_responses)
 
-    if re.search(r'\bakitti\b', p_message, re.IGNORECASE):
+    if re.search(r'\bakitti\b', p_message, re.IGNORECASE) and ('caius' in p_message):
         return random.choice(cute_responses)
 
     if p_message == '!norris':
         return get_random_chuck_norris_joke()
 
-    if p_message == '!dadjoke':
+    if p_message == 'c!dadjoke':
         return get_dad_joke()
 
-    if p_message == '!fox':
+    if p_message == 'c!fox':
         fox_image_url = get_random_fox_image()
         return fox_image_url or "Failed to fetch a fox image."
 
-    if p_message == '!advice':
+    if p_message == 'c!advice':
         return get_random_advice()
 
     if re.search(r'\bcaius cat\b', p_message, re.IGNORECASE):
-        cat_image_url = get_random_cat_image('live_mgiNICPZqrZFcDNDNIFqMgKtlPChA5i5HyIdvJrac3k04QAASsJyxvDkzJDm5Q1G')
+        cat_image_url = get_random_cat_image(os.getenv('CAT_API_KEY'))
         return cat_image_url or "Failed to fetch a cat image."
 
-    if p_message == "!saul":
+    if p_message == "c!saul":
         return "It's Saulin time."
 
     if 'roll' in p_message:
@@ -143,39 +145,39 @@ def handle_response(message: str) -> str:
     if p_message == '!help':
         return (
             "Welcome to Discord Wonderland! Embark on a journey of discovery with these commands:\n"
-            "- Type `!fact` and unlock mind-blowing facts that will transport you to new realms.\n"
-            "- Summon inspiration by typing `!quote` for a collection of profound and thought-provoking quotes.\n"
-            "- Elevate your mood! Type `!joke` for a burst of laughter and `!dadjoke` for some wholesome dad humor.\n"
-            "- Seek wisdom with `!advice` and receive valuable insights to navigate life's challenges.\n"
-            "- Brace yourself for Chuck Norris' legendary humor! Type `!norris` for a Chuck Norris joke.\n"
-            "- Curious about foxes? Type `!fox` to conjure a virtual fox and witness its playful antics.\n"
+            "- Type `c!fact` and unlock mind-blowing facts that will transport you to new realms.\n"
+            "- Summon inspiration by typing `c!quote` for a collection of profound and thought-provoking quotes.\n"
+            "- Elevate your mood! Type `c!joke` for a burst of laughter and `c!dadjoke` for some wholesome dad humor.\n"
+            "- Seek wisdom with `c!advice` and receive valuable insights to navigate life's challenges.\n"
+            "- Brace yourself for Chuck Norris' legendary humor! Type `c!norris` for a Chuck Norris joke.\n"
+            "- Curious about foxes? Type `c!fox` to conjure a virtual fox and witness its playful antics.\n"
             "- Yearning for feline charm? Type `!caius cat` for adorable cat pictures. Don't forget to spice it up "
-            "with a cat fact by typing `!catfact`.\n"
-            "- Feeling bored? Type `!bored` for quick ideas to banish boredom.\n"
-            "- Reach for the stars! Type `!nasa` and behold the Astronomy Picture of the Day from NASA."
+            "with a cat fact by typing `c!catfact`.\n"
+            "- Feeling bored? Type `c!bored` for quick ideas to banish boredom.\n"
+            "- Reach for the stars! Type `c!nasa` and behold the Astronomy Picture of the Day from NASA."
         )
 
-    if p_message == '!nasa':
-        nasa_apod_info = get_nasa_apod('eIZK2lZteT959mjn9ZcbzsV76BoLU0xUsfozZhcY')
+    if p_message == 'c!nasa':
+        nasa_apod_info = get_nasa_apod(os.getenv('NASA_API_KEY'))
         if nasa_apod_info:
             return f"{nasa_apod_info['title']} \n\n{nasa_apod_info['explanation']}\n\n {nasa_apod_info['image_url']}"
         else:
             return "Failed to fetch NASA APOD."
 
-    if p_message == '!catfact':
+    if p_message == 'c!catfact':
         cat_fact = get_cat_fact()
         return f"Cat Fact: {cat_fact}"
 
-    if p_message == '!quote':
+    if p_message == 'c!quote':
         return random.choice(quotes)
 
-    if p_message == '!joke':
+    if p_message == 'c!joke':
         return random.choice(joke)
 
-    if p_message == '!fact':
+    if p_message == 'c!fact':
         return random.choice(fact)
 
-    return 'Regrettably, I am unable to grasp the meaning of your statement. Try typing "!help".'
+    return 'Regrettably, I am unable to grasp the meaning of your statement. Try typing "c!help".'
 
 
 user_message = input("Enter a message: ")
