@@ -139,10 +139,10 @@ def handle_response(message: str) -> str:
     if p_message == "c!saul":
         return "It's Saulin time."
 
-    if 'roll' in p_message:
+    if 'c!roll' in p_message:
         return str(random.randint(1, 6))
 
-    if p_message == '!help':
+    if p_message == 'c!help':
         return (
             "Welcome to Discord Wonderland! Embark on a journey of discovery with these commands:\n"
             "- Type `c!fact` and unlock mind-blowing facts that will transport you to new realms.\n"
