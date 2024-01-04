@@ -119,7 +119,7 @@ def handle_response(message: str) -> str:
     if re.search(r'\bakitti\b', p_message, re.IGNORECASE) and ('caius' in p_message):
         return random.choice(cute_responses)
 
-    if p_message == '!norris':
+    if p_message == 'c!norris':
         return get_random_chuck_norris_joke()
 
     if p_message == 'c!dadjoke':
