@@ -1,0 +1,21 @@
+[Unit]
+Description=Caius bot
+Requires=network-online.target
+
+# To start caius from system start, add the contents of this file to /etc/systemd/system/caius.service
+# Then run systemctl enable caius; systemctl start caius;
+
+[Service]
+User=caius
+Group=caius
+Environment=PATH=/usr/bin/:/home/caius/.local/bin
+Type=simple
+WorkingDirectory=/home/caius/Caius
+ExecStart=/usr/bin/python3 /home/caius/Caius/bot.py
+ExecReload=/bin/kill -s HUP $MAINPID
+ExecStop=/bin/kill -s QUIT $MAINPID
+Restart=always
+[Install]
+WantedBy=multi-user.target
+
+
