@@ -179,8 +179,8 @@ def handle_response(message: str) -> str:
 
     return 'Regrettably, I am unable to grasp the meaning of your statement. Try typing "c!help".'
 
-
-user_message = input("Enter a message: ")
-response = handle_response(user_message)
-print(response)
-user_message = input
+if os.getenv('DEBUG_MODE'):
+    user_message = input("Enter a message: ")
+    response = handle_response(user_message)
+    print(response)
+    user_message = input
