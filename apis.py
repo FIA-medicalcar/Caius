@@ -119,16 +119,13 @@ def get_dad_joke():
     except requests.exceptions.RequestException as e:
         print(f"Error fetching dad joke: {e}")
         return "Unable to fetch dad joke."
-        
 
-def get_formula1_data(api_key, year):
+
+def get_formula1_data(year):
     formula1_api_url = f"https://ergast.com/api/f1/{year}.json"
-    params = {"api_key": api_key}
 
     try:
-        print("Formula 1 API URL:", formula1_api_url) 
-        response = requests.get(formula1_api_url, params=params)
-        print("API Response:", response.text)  
+        response = requests.get(formula1_api_url)
         response.raise_for_status()
         formula1_data = response.json()
         return formula1_data
