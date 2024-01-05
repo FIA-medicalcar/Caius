@@ -126,7 +126,9 @@ def get_formula1_data(api_key, year):
     params = {"api_key": api_key}
 
     try:
+        print("Formula 1 API URL:", formula1_api_url) 
         response = requests.get(formula1_api_url, params=params)
+        print("API Response:", response.text)  
         response.raise_for_status()
         formula1_data = response.json()
         return formula1_data
@@ -134,3 +136,4 @@ def get_formula1_data(api_key, year):
     except requests.exceptions.RequestException as e:
         print(f"Error fetching Formula 1 data: {e}")
         return "Failed to fetch Formula 1 data."
+
