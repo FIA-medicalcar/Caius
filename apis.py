@@ -120,4 +120,32 @@ def get_dad_joke():
         print(f"Error fetching dad joke: {e}")
         return "Unable to fetch dad joke."
 
+def get_formula1_data(api_key, year):
+    """
+    Fetch Formula 1 race schedule for a specific year.
+
+    Parameters:
+    - api_key (str): The API key for accessing the Formula 1 API.
+    - year (str): The year for which the Formula 1 race schedule is requested.
+
+    Returns:
+    - dict: Formula 1 race schedule data.
+    """
+    formula1_api_url = f"https://ergast.com/api/f1/{year}.json"
+
+    params = {
+        "api_key": api_key,
+    }
+
+    try:
+        response = requests.get(formula1_api_url, params=params)
+        response.raise_for_status()
+        formula1_data = response.json()
+
+        return formula1_data
+
+    except requests.exceptions.RequestException as e:
+        print(f"Error fetching Formula 1 data: {e}")
+        return None 
+        
 
