@@ -181,7 +181,7 @@ def handle_response(message: str) -> str:
         return random.choice(fact)
 
 
-   if p_message.startswith('c!formula1'):
+if p_message.startswith('c!formula1'):
     print("Handling c!formula1 command")
     parts = p_message.split(' ')
     if len(parts) == 2 and parts[1].isdigit():
@@ -199,8 +199,7 @@ def handle_response(message: str) -> str:
         return "Failed to fetch Formula 1 data."
 
     print("Please provide a valid year for Formula 1 data. For example, 'c!formula1 2023'.")
-    return "Please provide a valid year for Formula 1 data. For example, 'c!formula1 2023'."
-
+    return "Please provide a valid year for Formula 1 data. For example, 'c!formula1 2023.'"
 
     return 'Regrettably, I am unable to grasp the meaning of your statement. Try typing "c!help".'
 
