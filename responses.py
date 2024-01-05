@@ -179,12 +179,13 @@ def handle_response(message: str) -> str:
 
     if p_message == 'c!fact':
         return random.choice(fact)
-     if p_message.startswith('c!formula1'):
+
+    if p_message.startswith('c!formula1'):
         print("Handling c!formula1 command")
         parts = p_message.split(' ')
         if len(parts) == 2 and parts[1].isdigit():
             year = parts[1]
-            api_key = get_api_key()
+            api_key = os.getenv('F1DATA_API_KEY')
 
             if api_key:
                 print("Fetching Formula 1 data...")
