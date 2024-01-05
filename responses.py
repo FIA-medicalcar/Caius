@@ -185,20 +185,19 @@ def handle_response(message: str) -> str:
         parts = p_message.split(' ')
         if len(parts) == 2 and parts[1].isdigit():
             year = parts[1]
-            api_key = os.getenv('F1DATA_API_KEY')
-
-            if api_key:
-                print("Fetching Formula 1 data...")
-                formula1_data = get_formula1_data(api_key, year)
-                if formula1_data:
-                    print(f"Formula 1 data for {year} fetched successfully.")
-                    return f"Formula 1 data for {year} fetched successfully."
+            
+            print("Fetching Formula 1 data...")
+            formula1_data = get_formula1_data(year)
+            if formula1_data:
+                print(f"Formula 1 data for {year} fetched successfully.")
+                return f"Formula 1 data for {year} fetched successfully."
 
             print("Failed to fetch Formula 1 data.")
             return "Failed to fetch Formula 1 data."
 
         print("Please provide a valid year for Formula 1 data. For example, 'c!formula1 2023'.")
         return "Please provide a valid year for Formula 1 data. For example, 'c!formula1 2023'."
+
 
     return 'Regrettably, I am unable to grasp the meaning of your statement. Try typing "c!help".'
 
