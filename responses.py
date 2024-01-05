@@ -155,6 +155,9 @@ def handle_response(message: str) -> str:
             "with a cat fact by typing `c!catfact`.\n"
             "- Feeling bored? Type `c!bored` for quick ideas to banish boredom.\n"
             "- Reach for the stars! Type `c!nasa` and behold the Astronomy Picture of the Day from NASA."
+            "- Warp into the fast track! Type `c!formula1 [year]` to time-travel through the history of Formula 1 in a specific year."
+
+
         )
 
     if p_message == 'c!nasa':
@@ -176,6 +179,23 @@ def handle_response(message: str) -> str:
 
     if p_message == 'c!fact':
         return random.choice(fact)
+
+
+    if p_message.startswith('c!formula1'):
+        parts = p_message.split(' ')
+        if len(parts) == 2 and parts[1].isdigit():
+            year = parts[1]
+            api_key = get_api_key()
+
+            if api_key:
+                formula1_data = get_formula1_data(api_key, year)
+                if formula1_data:
+                    
+                    return f"Formula 1 data for {year} fetched successfully."
+
+            return "Failed to fetch Formula 1 data."
+
+        return "Please provide a valid year for Formula 1 data. For example, 'c!formula1 2023'."
 
     return 'Regrettably, I am unable to grasp the meaning of your statement. Try typing "c!help".'
 
