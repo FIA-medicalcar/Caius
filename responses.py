@@ -154,7 +154,7 @@ def handle_response(message: str) -> str:
             "- Yearning for feline charm? Type `c!caius cat` for adorable cat pictures. Don't forget to spice it up "
             "with a cat fact by typing `c!catfact`.\n"
             "- Feeling bored? Type `c!bored` for quick ideas to banish boredom.\n"
-            "- Reach for the stars! Type `c!nasa` and behold the Astronomy Picture of the Day from NASA."
+            "- Reach for the stars! Type `c!nasa` and behold the Astronomy Picture of the Day from NASA.\n"
             "- Warp into the fast track! Type `c!formula1 [year]` to time-travel through the history of Formula 1 in a specific year."
 
 
