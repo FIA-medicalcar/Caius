@@ -155,8 +155,12 @@ def handle_response(message: str) -> str:
     if p_message == "c!saul":
         return "It's Saulin time."
 
-     if p_message == "c!gacha":
+    if p_message == "c!gacha":
         return "Give Tony the ol' Jedi mind trick and see if he can work his mastry on this one!"
+
+    if p_message == 'c!taxes':
+        image_url = "https://i.imgflip.com/8bi2qw.jpg"
+        return f"Viz is no stranger to the art of tax shenanigans.\n{image_url}"
 
     if 'c!roll' in p_message:
         return str(random.randint(1, 6))
