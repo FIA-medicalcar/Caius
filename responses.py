@@ -9,7 +9,7 @@ load_dotenv()
 
 
 def ask_for_track(year):
-    return f"Sure! For which track would you like to see the results for Formula 1 {year}? Please input the name of the track.."
+    return f"Sure! For which track would you like to see the results for Formula 1 {year}? Please input the name of the track."
 
 def handle_response(message: str) -> str:
     p_message = message.lower()
