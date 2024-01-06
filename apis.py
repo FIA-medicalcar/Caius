@@ -121,16 +121,47 @@ def get_dad_joke():
         return "Unable to fetch dad joke."
 
 
-def get_formula1_data(year):
-    formula1_api_url = f"https://ergast.com/api/f1/{year}.json"
-
+#Race results for a specific year and track
+def get_formula1_race_results(year, track_name):
+    base_url = f"http://ergast.com/api/f1/{year}/{track_name}/results.json"
     try:
-        response = requests.get(formula1_api_url)
+        response = requests.get(base_url)
         response.raise_for_status()
-        formula1_data = response.json()
-        return formula1_data
+        results_data = response.json()
+
+        race_results = []
+        for race in results_data.get("MRData", {}).get("RaceTable", {}).get("Races", []):
+            race_name = race.get("raceName", "")
+            date = race.get("date", "")
+            podium = race.get("Results", [])[:3]
+            
+            podium_names = [driver.get("Driver", {}).get("givenName", "") + " " + driver.get("Driver", {}).get("familyName", "") for driver in podium]
+            
+            race_info = f"{race_name} ({track_name} - {date}):\n   Winner: {podium_names[0]}\n   Second Place: {podium_names[1]}\n   Third Place: {podium_names[2]}"
+            race_results.append(race_info)
+
+        return race_results
 
     except requests.exceptions.RequestException as e:
-        print(f"Error fetching Formula 1 data: {e}")
-        return "Failed to fetch Formula 1 data."
+        print(f"Error fetching Formula 1 race results: {e}")
+        return None
 
+# Driver standings for a specific year and track
+def get_formula1_driver_standings(year, track_name):
+    base_url = f"http://ergast.com/api/f1/{year}/{track_name}/driverStandings.json"
+    try:
+        response = requests.get(base_url)
+        response.raise_for_status()
+        standings_data = response.json()
+
+        driver_standings = []
+        for standing in standings_data.get("MRData", {}).get("StandingsTable", {}).get("StandingsLists", []):
+            for position in standing.get("DriverStandings", []):
+                position_text = f"{position.get('position', '')}. {position.get('Driver', {}).get('givenName', '')} {position.get('Driver', {}).get('familyName', '')} - {position.get('points', '')} points"
+                driver_standings.append(position_text)
+
+        return driver_standings
+
+    except requests.exceptions.RequestException as e:
+        print(f"Error fetching Formula 1 driver standings: {e}")
+        return None
