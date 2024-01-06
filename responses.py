@@ -7,6 +7,18 @@ from dotenv import load_dotenv
 import os
 load_dotenv()
 
+global safety_car_counter
+safety_car_counter = 0
+
+def handle_safety_car():
+    global safety_car_counter
+
+    if safety_car_counter % 2 == 0:
+        safety_car_counter += 1
+        return "Safety Car deployed."
+    else:
+        safety_car_counter += 1
+        return "Safety Car in this lap."
 
 def ask_for_track(year):
     return f"Sure! For which track would you like to see the results for Formula 1 {year}? Please input the name of the track."
@@ -143,6 +155,9 @@ def handle_response(message: str) -> str:
     if p_message == "c!saul":
         return "It's Saulin time."
 
+     if p_message == "c!gacha":
+        return "Give Tony the ol' Jedi mind trick and see if he can work his mastry on this one!"
+
     if 'c!roll' in p_message:
         return str(random.randint(1, 6))
 
@@ -183,6 +198,9 @@ def handle_response(message: str) -> str:
 
     if p_message == 'c!fact':
         return random.choice(fact)
+
+     if p_message == 'c!sc':
+        return handle_safety_car()
 
     if re.search(r'c!formula[ ]?1 (\d{4})', p_message):
         year_match = re.search(r'c!formula[ ]?1 (\d{4})', p_message)
