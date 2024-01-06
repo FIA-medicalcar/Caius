@@ -7,6 +7,10 @@ from dotenv import load_dotenv
 import os
 load_dotenv()
 
+
+def ask_for_track(year):
+    return f"Sure! For which track would you like to see the results for Formula 1 {year}? Please input the name of the track.."
+
 def handle_response(message: str) -> str:
     p_message = message.lower()
 
@@ -180,24 +184,34 @@ def handle_response(message: str) -> str:
     if p_message == 'c!fact':
         return random.choice(fact)
 
-    if p_message.startswith('c!formula1'):
-        print("Handling c!formula1 command")
-        parts = p_message.split(' ')
-        if len(parts) == 2 and parts[1].isdigit():
-            year = parts[1]
-            
-            print("Fetching Formula 1 data...")
-            formula1_data = get_formula1_data(year)
-            if formula1_data:
-                print(f"Formula 1 data for {year} fetched successfully.")
-                return f"Formula 1 data for {year} fetched successfully."
+    if re.search(r'c!formula[ ]?1 (\d{4})', p_message):
+        year_match = re.search(r'c!formula[ ]?1 (\d{4})', p_message)
+        if year_match:
+            year = int(year_match.group(1))
+            return ask_for_track(year)
 
-            print("Failed to fetch Formula 1 data.")
-            return "Failed to fetch Formula 1 data."
+    if re.search(r'c!formula[ ]?1 (\d{4}) (.+)', p_message):
+        year_match = re.search(r'c!formula[ ]?1 (\d{4}) (.+)', p_message)
+        if year_match:
+            year = int(year_match.group(1))
+            track_name = year_match.group(2).strip()
+            race_results = get_formula1_race_results(year, track_name)
+            driver_standings = get_formula1_driver_standings(year, track_name)
 
-        print("Please provide a valid year for Formula 1 data. For example, 'c!formula1 2023'.")
-        return "Please provide a valid year for Formula 1 data. For example, 'c!formula1 2023'."
+            if race_results:
+                response_str = f"Formula 1 {year} Season - {track_name}:\n" + "\n".join(race_results)
+            else:
+                response_str = f"Failed to fetch Formula 1 race results for {track_name}."
 
+            if driver_standings:
+                response_str += f"\n\nDriver Standings ({year}, {track_name}):\n" + "\n".join(driver_standings)
+            else:
+                response_str += f"\n\nFailed to fetch Formula 1 standings for {track_name}."
+
+            return response_str
+
+        else:
+            return "Invalid command format. Use `c!formula1 [year] [track]` to get Formula 1 race results for a specific year and track."
 
     return 'Regrettably, I am unable to grasp the meaning of your statement. Try typing "c!help".'
 
