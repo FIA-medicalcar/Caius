@@ -203,7 +203,7 @@ def handle_response(message: str) -> str:
     if p_message == 'c!fact':
         return random.choice(fact)
 
-     if p_message == 'c!sc':
+    if p_message == 'c!sc':
         return handle_safety_car()
 
     if re.search(r'c!formula[ ]?1 (\d{4})', p_message):
