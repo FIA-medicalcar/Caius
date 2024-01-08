@@ -2,7 +2,7 @@ import random
 import re
 from typing import List
 import requests
-from apis import get_random_cat_image, get_random_chuck_norris_joke, get_random_advice, get_random_fox_image, get_nasa_apod, get_cat_fact, get_dad_joke, get_formula1_data
+from apis import get_random_cat_image, get_random_chuck_norris_joke, get_random_advice, get_random_fox_image, get_nasa_apod, get_cat_fact, get_dad_joke
 from dotenv import load_dotenv
 import os
 load_dotenv()
