@@ -217,6 +217,7 @@ def handle_response(message: str) -> str:
         if year_match:
             year = int(year_match.group(1))
             track_name = year_match.group(2).strip()
+            return # TODO: Implement/Fix the response
             race_results = get_formula1_race_results(year, track_name)
             driver_standings = get_formula1_driver_standings(year, track_name)
 
