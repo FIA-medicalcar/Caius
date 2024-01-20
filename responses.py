@@ -2,7 +2,17 @@ import random
 import re
 from typing import List
 import requests
-from apis import get_random_cat_image, get_random_chuck_norris_joke, get_random_advice, get_random_fox_image, get_nasa_apod, get_cat_fact, get_dad_joke
+from apis import (
+    get_random_cat_image, 
+    get_random_chuck_norris_joke, 
+    get_random_advice, 
+    get_random_fox_image, 
+    get_nasa_apod, 
+    get_cat_fact, 
+    get_dad_joke,
+    get_formula1_race_results, 
+    get_formula1_driver_standings  
+)
 from dotenv import load_dotenv
 import os
 load_dotenv()
@@ -36,7 +46,7 @@ def handle_response(message: str) -> str:
     ]
 
     bored_responses = [
-        "I understand the feeling of boredom. How about trying a new hobby, like painting or playing a musical instrument?",
+        "I understand the feeling of boredom. How about trying a new hobby, like painting or playing a musical instrument?"
         "Boredom can be a great opportunity for creativity! You could try writing a short story or composing a song.",
         "Why not explore the world of books? Reading can transport you to fascinating places and ignite your imagination.",
         "Have you ever considered learning a new language? It can be a fun and rewarding way to spend your time.",
@@ -62,7 +72,7 @@ def handle_response(message: str) -> str:
     ]
     fact = [
         "A single rainforest can produce 20% of the Earth's oxygen.",
-        "Cleopatra lived closer in time to the first Moon landing than to the construction of the Great Pyramid.",
+         "Cleopatra lived closer in time to the first Moon landing than to the construction of the Great Pyramid.",
         "The world's largest desert, Antarctica, is technically a cold desert.",
         "Wombat poop is cube-shaped to prevent it from rolling away on slopes.",
         "A 'jiffy' is an actual unit of time, equivalent to 1/100th of a second.",
@@ -93,11 +103,11 @@ def handle_response(message: str) -> str:
         "Why did the tomato turn red? Because it saw the salad dressing!",
         "Parallel lines have so much in common. It's a shame they'll never meet.",
         "What do you call a fish wearing a bowtie? SoFISHticated."
-
     ]
 
     quotes = [
         "The only way to do great work is to love what you do. - Steve Jobs",
+        
         "Success is not final, failure is not fatal: It is the courage to continue that counts. - Winston Churchill",
         "The only way to achieve the impossible is to believe it is possible. - Charles Kingsleigh",
         "Don't watch the clock; do what it does. Keep going. - Sam Levenson",
@@ -162,6 +172,9 @@ def handle_response(message: str) -> str:
         image_url = "https://i.imgflip.com/8bi2qw.jpg"
         return f"Viz is no stranger to the art of tax shenanigans.\n{image_url}"
 
+     if p_message == "c!monad":
+        return "A monad is essentially just a monoid in the category of endofunctors."
+
     if 'c!roll' in p_message:
         return str(random.randint(1, 6))
 
@@ -179,8 +192,6 @@ def handle_response(message: str) -> str:
             "- Feeling bored? Type `c!bored` for quick ideas to banish boredom.\n"
             "- Reach for the stars! Type `c!nasa` and behold the Astronomy Picture of the Day from NASA.\n"
             "- Warp into the fast track! Type `c!formula1 [year]` to time-travel through the history of Formula 1 in a specific year."
-
-
         )
 
     if p_message == 'c!nasa':
@@ -217,7 +228,6 @@ def handle_response(message: str) -> str:
         if year_match:
             year = int(year_match.group(1))
             track_name = year_match.group(2).strip()
-            return # TODO: Implement/Fix the response
             race_results = get_formula1_race_results(year, track_name)
             driver_standings = get_formula1_driver_standings(year, track_name)
 
@@ -243,3 +253,4 @@ if os.getenv('DEBUG_MODE'):
     response = handle_response(user_message)
     print(response)
     user_message = input
+
