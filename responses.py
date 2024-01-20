@@ -191,7 +191,7 @@ def handle_response(message: str) -> str:
             "with a cat fact by typing `c!catfact`.\n"
             "- Feeling bored? Type `c!bored` for quick ideas to banish boredom.\n"
             "- Reach for the stars! Type `c!nasa` and behold the Astronomy Picture of the Day from NASA.\n"
-            "- Warp into the fast track! Type `c!formula1 [year]` to time-travel through the history of Formula 1 in a specific year."
+            "- Warp into the fast track! Type `c!f1 [year]` to time-travel through the history of Formula 1 in a specific year."
         )
 
     if p_message == 'c!nasa':
