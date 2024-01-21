@@ -172,7 +172,7 @@ def handle_response(message: str) -> str:
         image_url = "https://i.imgflip.com/8bi2qw.jpg"
         return f"Viz is no stranger to the art of tax shenanigans.\n{image_url}"
 
-     if p_message == "c!monad":
+    if p_message == "c!monad":
         return "A monad is essentially just a monoid in the category of endofunctors."
 
     if 'c!roll' in p_message:
