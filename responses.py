@@ -171,11 +171,12 @@ def handle_response(message: str) -> str:
     if p_message == 'c!taxes':
         image_url = "https://i.imgflip.com/8bi2qw.jpg"
         return f"Viz is no stranger to the art of tax shenanigans.\n{image_url}"
-        await message.channel.send(content=None, file=discord.File(image_url))
+        #await message.channel.send(content=None, file=discord.File(image_url))
 
     if p_message == 'c!sleep':
         image_url = "https://pbs.twimg.com/media/GFaMnffW4AAReR8?format=jpg&name=medium"
-        await message.channel.send(file=discord.File(image_url))
+        return image_url
+        #await message.channel.send(file=discord.File(image_url))
 
     if p_message == "c!monad":
         return "A monad in X is just a monoid in the category of endofunctors of X, with product × replaced by composition of endofunctors and unit set by the identity endofunctor."
