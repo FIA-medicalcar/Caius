@@ -171,9 +171,14 @@ def handle_response(message: str) -> str:
     if p_message == 'c!taxes':
         image_url = "https://i.imgflip.com/8bi2qw.jpg"
         return f"Viz is no stranger to the art of tax shenanigans.\n{image_url}"
+        await message.channel.send(content=None, file=discord.File(image_url))
+
+    if p_message == 'c!sleep':
+        image_url = "https://pbs.twimg.com/media/GFaMnffW4AAReR8?format=jpg&name=medium"
+        await message.channel.send(file=discord.File(image_url))
 
     if p_message == "c!monad":
-        return "A monad is essentially just a monoid in the category of endofunctors."
+        return "A monad in X is just a monoid in the category of endofunctors of X, with product × replaced by composition of endofunctors and unit set by the identity endofunctor."
 
     if 'c!roll' in p_message:
         return str(random.randint(1, 6))
@@ -187,11 +192,11 @@ def handle_response(message: str) -> str:
             "- Seek wisdom with `c!advice` and receive valuable insights to navigate life's challenges.\n"
             "- Brace yourself for Chuck Norris' legendary humor! Type `c!norris` for a Chuck Norris joke.\n"
             "- Curious about foxes? Type `c!fox` to conjure a virtual fox and witness its playful antics.\n"
-            "- Yearning for feline charm? Type `c!caius cat` for adorable cat pictures. Don't forget to spice it up "
+            "- Yearning for feline charm? Type `c!cat` for adorable cat pictures. Don't forget to spice it up "
             "with a cat fact by typing `c!catfact`.\n"
             "- Feeling bored? Type `c!bored` for quick ideas to banish boredom.\n"
-            "- Reach for the stars! Type `c!nasa` and behold the Astronomy Picture of the Day from NASA.\n"
-            "- Warp into the fast track! Type `c!f1 [year]` to time-travel through the history of Formula 1 in a specific year."
+            "- Reach for the stars! Type `c!nasa` and behold the Astronomy Picture of the Day from NASA."
+           
         )
 
     if p_message == 'c!nasa':
