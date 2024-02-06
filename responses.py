@@ -166,7 +166,7 @@ def handle_response(message: str) -> str:
         return "It's Saulin time."
 
     if p_message == "c!gacha":
-        return "Give Tony the ol' Jedi mind trick and see if he can work his mastry on this one!"
+        return "Give Tony the ol' Jedi mind trick and see if he can work his mastery on this one!"
 
     if p_message == 'c!taxes':
         image_url = "https://i.imgflip.com/8bi2qw.jpg"
