@@ -158,7 +158,7 @@ def handle_response(message: str) -> str:
     if p_message == 'c!advice':
         return get_random_advice()
 
-    if re.search(r'\bcaius cat\b', p_message, re.IGNORECASE) or re.search(r'\bc!caius cat\b', p_message, re.IGNORECASE):
+    if p_message == 'c!cat':
         cat_image_url = get_random_cat_image(os.getenv('CAT_API_KEY'))
         return cat_image_url or "Failed to fetch a cat image."
 
