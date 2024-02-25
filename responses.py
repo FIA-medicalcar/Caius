@@ -15,6 +15,7 @@ from apis import (
 )
 from dotenv import load_dotenv
 import os
+import puzzles
 load_dotenv()
 
 global safety_car_counter
@@ -180,6 +181,16 @@ def handle_response(message: str) -> str:
 
     if p_message == "c!monad":
         return "A monad in X is just a monoid in the category of endofunctors of X, with product × replaced by composition of endofunctors and unit set by the identity endofunctor."
+
+    if p_message.startswith("c!puzzle"):
+        if "hard" in p_message:
+            return puzzles.create_puzzle("hard")
+        elif "easy" in p_message:
+            return puzzles.create_puzzle("easy")
+        elif "normal" in p_message or p_message == "c!puzzle":
+            return puzzles.create_puzzle("normal")
+        elif p_message.startswith("c!puzzle "):
+            return "Usage: c!puzzle [easy|normal|hard]"
 
     if 'c!roll' in p_message:
         return str(random.randint(1, 6))
