@@ -2,6 +2,8 @@ import random
 import re
 from typing import List
 import requests
+
+import puzzles
 from apis import (
     get_random_cat_image, 
     get_random_chuck_norris_joke, 

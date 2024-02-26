@@ -1,5 +1,4 @@
 from random import randint, sample, sample, choice
-import regex as re
 from typing import Literal
 
 ops = ["+","-","*","/"]
