@@ -3,6 +3,7 @@ import re
 from typing import List
 import requests
 
+
 import puzzles
 from apis import (
     get_random_cat_image, 
@@ -183,7 +184,7 @@ def handle_response(message: str) -> str:
     if p_message == "c!monad":
         return "A monad in X is just a monoid in the category of endofunctors of X, with product × replaced by composition of endofunctors and unit set by the identity endofunctor."
 
-    if p_message.startswith("c!puzzle"):
+    if p_message.lower().startwith("c!puzzle"):
         if "hard" in p_message:
             return puzzles.create_puzzle("hard")
         elif "easy" in p_message:
@@ -271,4 +272,6 @@ if os.getenv('DEBUG_MODE'):
     response = handle_response(user_message)
     print(response)
     user_message = input
+
+
 
