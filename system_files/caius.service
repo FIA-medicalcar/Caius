@@ -14,8 +14,10 @@ WorkingDirectory=/home/caius/Caius
 ExecStart=/usr/bin/python3 /home/caius/Caius/bot.py
 ExecReload=/bin/kill -s HUP $MAINPID
 ExecStop=/bin/kill -s QUIT $MAINPID
+KillMode=process
 Restart=always
+StartLimitIntervalSec=5
+StartLimitBurst=1
+
 [Install]
 WantedBy=multi-user.target
-
-
