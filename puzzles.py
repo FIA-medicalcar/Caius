@@ -62,7 +62,7 @@ def display_nums(nums,target):
     if len(nums) <= 1:
         display += f"Your numbers are {nums[0]}. "
     else:
-        display += f"Your numbers are {", ".join(str_list(nums[:-1]))} and {nums[-1]}. "
+        display += f"Your numbers are {', '.join(str_list(nums[:-1]))} and {nums[-1]}. "
     display += f"Your goal is {target}.\nYou can use + - * or / and may use each number at most once."
     return display
 
