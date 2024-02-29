@@ -184,7 +184,7 @@ def handle_response(message: str) -> str:
     if p_message == "c!monad":
         return "A monad in X is just a monoid in the category of endofunctors of X, with product × replaced by composition of endofunctors and unit set by the identity endofunctor."
 
-    if p_message.lower().startwith("c!puzzle"):
+    if p_message.lower().startswith("c!puzzle"):
         if "hard" in p_message:
             return puzzles.create_puzzle("hard")
         elif "easy" in p_message:
