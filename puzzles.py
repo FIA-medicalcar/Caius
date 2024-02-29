@@ -79,6 +79,8 @@ def create_puzzle(difficulty: Literal["easy","normal","hard"]):
         num_nums = 4
         min_range = 8
         max_range = 30
-    allowed_nums = sorted(randints(min_range,max_range,k=num_nums,duplicates=False))
-    target, solution = create_target(allowed_nums,min_range=num_nums*4,max_range=num_nums*10)
+    solution = "Error"
+    while solution == "Error":
+        allowed_nums = sorted(randints(min_range,max_range,k=num_nums,duplicates=False))
+        target, solution = create_target(allowed_nums,min_range=num_nums*4,max_range=num_nums*10)
     return display_nums(allowed_nums,target)
