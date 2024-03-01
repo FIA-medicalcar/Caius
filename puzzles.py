@@ -20,9 +20,9 @@ def check_one_operation(nums,target):
 def create_target(nums: list[int],min_range,max_range):
     target = -1
     counter = 0
-    while not min_range < target < max_range or target in nums or check_one_operation(nums,target):
+    while (not min_range < target < max_range) or target in nums or check_one_operation(nums,target):
         if counter >= 50:
-            return -1, "Error"
+            return -2, "Error"
         self_ops = ops.copy()
         numbers = sample(nums,k=len(nums))
         total_steps = len(nums)-1
@@ -80,7 +80,8 @@ def create_puzzle(difficulty: Literal["easy","normal","hard"]):
         min_range = 8
         max_range = 30
     solution = "Error"
-    while solution == "Error":
+    target = -1
+    while solution == "Error" or target in (-1,-2):
         allowed_nums = sorted(randints(min_range,max_range,k=num_nums,duplicates=False))
         target, solution = create_target(allowed_nums,min_range=num_nums*4,max_range=num_nums*10)
     return display_nums(allowed_nums,target)
