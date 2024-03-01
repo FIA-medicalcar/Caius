@@ -1,24 +1,19 @@
+import os
 import random
 import re
 from typing import List
+
+import puzzles
 import requests
 
+#TODO: Add reply system to Caius puzzles so it tells you if you get the puzzle right.
 
-import puzzles
-from apis import (
-    get_random_cat_image, 
-    get_random_chuck_norris_joke, 
-    get_random_advice, 
-    get_random_fox_image, 
-    get_nasa_apod, 
-    get_cat_fact, 
-    get_dad_joke,
-    get_formula1_race_results, 
-    get_formula1_driver_standings  
-)
+from apis import (get_cat_fact, get_dad_joke, get_formula1_driver_standings,
+                  get_formula1_race_results, get_nasa_apod, get_random_advice,
+                  get_random_cat_image, get_random_chuck_norris_joke,
+                  get_random_fox_image)
 from dotenv import load_dotenv
-import os
-import puzzles
+
 load_dotenv()
 
 global safety_car_counter
