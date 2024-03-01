@@ -5,7 +5,7 @@ import os
 
 load_dotenv()
 TOKEN = os.getenv('DISCORD_CAIUS_BOT_TOKEN')
-
+print("Token from .env:", TOKEN)
 
 async def send_message(message, user_message, is_private):
     try:
@@ -14,7 +14,6 @@ async def send_message(message, user_message, is_private):
 
     except Exception as e:
         print(e)
-
 
 def run_discord_bot():
     intents = discord.Intents.default()
@@ -37,14 +36,13 @@ def run_discord_bot():
         print(f'{username} said: "{user_message}" ({channel})')
 
         # Check if the message starts with a specific command prefix
-        if user_message.startswith('c!'):
-            if user_message.startswith('c?'):
-                user_message = user_message[1:]
-                await send_message(message, user_message, is_private=True)
-            else:
-                await send_message(message, user_message, is_private=False)
+        if user_message.lower().startswith('c!'):
+            user_message = user_message[2:]
+            await send_message(message, user_message, is_private=False)
+        elif user_message.lower().startswith('c?'):
+            user_message = user_message[2:]
+            await send_message(message, user_message, is_private=True)
 
     client.run(TOKEN)
-
 
 run_discord_bot()
