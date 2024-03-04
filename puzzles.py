@@ -1,4 +1,4 @@
-from random import randint, sample, sample, choice
+from random import randint, sample, choice, seed
 import regex as re
 from typing import Literal
 
@@ -77,11 +77,12 @@ def create_puzzle(difficulty: Literal["easy","normal","hard"]):
         max_range = 20
     if difficulty == "hard":
         num_nums = 4
-        min_range = 8
+        min_range = 5
         max_range = 30
     solution = "Error"
     target = -1
     while solution == "Error" or target in (-1,-2):
+        seed()
         allowed_nums = sorted(randints(min_range,max_range,k=num_nums,duplicates=False))
-        target, solution = create_target(allowed_nums,min_range=num_nums*4,max_range=num_nums*10)
+        target, solution = create_target(allowed_nums,min_range=num_nums*3,max_range=num_nums*10)
     return display_nums(allowed_nums,target)
