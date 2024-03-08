@@ -69,7 +69,7 @@ def display_nums(nums,target):
 
 def create_puzzle(difficulty: Literal["easy","normal","hard"]):
     if difficulty == "easy":
-        num_nums = 6
+        num_nums = 5
         min_range = 2
         max_range = 10
     if difficulty == "normal":
