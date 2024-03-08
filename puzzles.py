@@ -81,8 +81,8 @@ def create_puzzle(difficulty: Literal["easy","normal","hard"]):
         min_range = 5
         max_range = 20
     solution = "Error"
-    target = -1
-    while solution == "Error" or target in (-1,-2):
+    target = -3
+    while solution == "Error" or target in (-1,-2,-3):
         seed()
         allowed_nums = sorted(randints(min_range,max_range,k=num_nums,duplicates=False))
         target, solution = create_target(allowed_nums,min_range=num_nums*3,max_range=num_nums*12)
