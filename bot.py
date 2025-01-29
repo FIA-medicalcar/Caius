@@ -37,10 +37,8 @@ def run_discord_bot():
 
         # Check if the message starts with a specific command prefix
         if user_message.lower().startswith('c!'):
-            user_message = user_message[2:]
             await send_message(message, user_message, is_private=False)
         elif user_message.lower().startswith('c?'):
-            user_message = user_message[2:]
             await send_message(message, user_message, is_private=True)
 
     client.run(TOKEN)
