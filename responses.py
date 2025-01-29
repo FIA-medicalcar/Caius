@@ -147,7 +147,7 @@ def handle_response(message: str) -> str:
     if p_message == 'c!norris':
         return get_random_chuck_norris_joke()
 
-    if p_message == 'c!dadjoke':
+    if p_message == 'c!dadjoke' or p_message == 'c!dj':
         return get_dad_joke()
 
     if p_message == 'c!fox':
@@ -195,17 +195,12 @@ def handle_response(message: str) -> str:
 
     if p_message == 'c!help':
         return (
-            "Welcome to Discord Wonderland! Embark on a journey of discovery with these commands:\n"
-            "- Type `c!fact` and unlock mind-blowing facts that will transport you to new realms.\n"
-            "- Summon inspiration by typing `c!quote` for a collection of profound and thought-provoking quotes.\n"
-            "- Elevate your mood! Type `c!joke` for a burst of laughter and `c!dadjoke` for some wholesome dad humor.\n"
-            "- Seek wisdom with `c!advice` and receive valuable insights to navigate life's challenges.\n"
-            "- Brace yourself for Chuck Norris' legendary humor! Type `c!norris` for a Chuck Norris joke.\n"
-            "- Curious about foxes? Type `c!fox` to conjure a virtual fox and witness its playful antics.\n"
-            "- Yearning for feline charm? Type `c!cat` for adorable cat pictures. Don't forget to spice it up "
-            "with a cat fact by typing `c!catfact`.\n"
-            "- Feeling bored? Type `c!bored` for quick ideas to banish boredom.\n"
-            "- Reach for the stars! Type `c!nasa` and behold the Astronomy Picture of the Day from NASA."
+            "Welcome to Caius! Check out these cool commands:\n"
+            "- In need of some cuteness? Type `c!cat` for adorable cat pics, and add `c!catfact` for a fun cat fact.\n"
+            "- Feeling curious? Type `c!fox` to bring a cute virtual fox to life.\n"
+            "- Type `c!advice` for some helpful tips to tackle life’s challenges.\n"
+            "- Love space? Type `c!nasa` to see the Astronomy Picture of the Day from NASA.\n"
+            "- Want a laugh? Type `c!norris` for some classic Chuck Norris humor."
            
         )
 
@@ -216,15 +211,12 @@ def handle_response(message: str) -> str:
         else:
             return "Failed to fetch NASA APOD."
 
-    if p_message == 'c!catfact':
+    if p_message == 'c!catfact'or p_message == 'c!cf':
         cat_fact = get_cat_fact()
         return f"Cat Fact: {cat_fact}"
 
-    if p_message == 'c!quote':
+    if p_message == 'c!quote' or p_message == 'c!q':
         return random.choice(quotes)
-
-    if p_message == 'c!joke':
-        return random.choice(joke)
 
     if p_message == 'c!fact':
         return random.choice(fact)
@@ -261,7 +253,7 @@ def handle_response(message: str) -> str:
         else:
             return "Invalid command format. Use `c!formula1 [year] [track]` to get Formula 1 race results for a specific year and track."
 
-    return 'Regrettably, I am unable to grasp the meaning of your statement. Try typing "c!help".'
+    return 'Oops! I didn’t get that. Try `c!help` for a list of commands.'
 
 if os.getenv('DEBUG_MODE'):
     user_message = input("Enter a message: ")
